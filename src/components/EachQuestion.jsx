@@ -88,7 +88,6 @@ const EachQuestion = () => {
   const handleAnswerSelection = (option) => {
     if (!isConfirmed) {
       setSelectedOption(option);
-      setIsTimerPaused(true); // Pause the timer
     }
   };
 
@@ -99,6 +98,7 @@ const EachQuestion = () => {
       setIsCorrect(correct);
       playSound(correct);
       setIsConfirmed(true);
+      setIsTimerPaused(true); // Pause the timer
       setShowModal(false); // Ensure modal doesn't show until explicitly triggered
     }
   };
