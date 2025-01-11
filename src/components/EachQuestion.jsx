@@ -24,14 +24,20 @@ const EachQuestion = () => {
   }, [id]);
 
   useEffect(() => {
-    if (timer > 0 && !isTimerPaused) {
-      const timerId = setTimeout(() => setTimer(timer - 1), 1000);
-      return () => clearTimeout(timerId);
-    } else if (timer === 0 && !isTimerPaused) {
-      alert("Time's up!");
-      navigate("/questions");
-    }
-  }, [timer, isTimerPaused, navigate]);
+  if (timer === 10 && !isTimerPaused) {
+    const timerSound = new Audio("/timer.mp3");
+    timerSound.play();
+  }
+
+  if (timer > 0 && !isTimerPaused) {
+    const timerId = setTimeout(() => setTimer(timer - 1), 1000);
+    return () => clearTimeout(timerId);
+  } else if (timer === 0 && !isTimerPaused) {
+    alert("Time's up!");
+    navigate("/questions");
+  }
+}, [timer, isTimerPaused, navigate]);
+
 
   const playSound = (correct) => {
     if (audioRef.current) {
