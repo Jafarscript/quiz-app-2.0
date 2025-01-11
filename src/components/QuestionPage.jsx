@@ -15,7 +15,8 @@ const QuestionsPage = () => {
 
   // Load visited questions from localStorage (if available)
   useEffect(() => {
-    const storedVisited = JSON.parse(localStorage.getItem("visitedQuestions")) || [];
+    const storedVisited =
+      JSON.parse(localStorage.getItem("visitedQuestions")) || [];
     setVisitedQuestions(storedVisited);
   }, []);
 
@@ -37,6 +38,18 @@ const QuestionsPage = () => {
     setVisitedQuestions([]); // Clear the state
     localStorage.removeItem("visitedQuestions"); // Remove from localStorage
   };
+
+  // Play intro sound when the page loads
+  useEffect(() => {
+    const audio = new Audio("/intro.mp3"); // Ensure 'intro.mp3' is in the public folder
+    audio.play();
+
+    return () => {
+      // Cleanup to stop the sound if the component unmounts
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-6 flex flex-col items-center">
