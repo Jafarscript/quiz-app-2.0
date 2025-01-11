@@ -59,7 +59,7 @@ const QuestionsPage = () => {
                 key={questionId}
                 to={`/question/${questionId}`}
                 className={`bg-white rounded-lg shadow-lg p-6 flex items-center justify-center hover:scale-105 transform transition-all duration-300 hover:shadow-xl ${
-                  isVisited(questionId) ? "bg-gray-700 cursor-not-allowed" : ""
+                  isVisited(questionId) ? "bg-slate-700 cursor-not-allowed" : ""
                 }`}
                 onClick={() => handleQuestionClick(questionId)}
               >
